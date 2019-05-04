@@ -1,0 +1,14 @@
+@font-face {
+    font-family: vazirFont;
+    src: url("../fonts/BKOODB.TTF");
+}
+
+body {
+    font-family: vazirFont, sans-serif;
+}
+
+@media only screen and (max-width: 576px){
+    #sec-text {
+        font-size: 13px;
+    }
+}

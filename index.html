@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../skins/aqua/theme.css" title="Aqua"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-blue.css" title="winter"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-blue2.css" title="blue"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-brown.css" title="summer"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-green.css" title="green"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-win2k-1.css" title="win2k-1"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-win2k-2.css" title="win2k-2"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-win2k-cold-1.css"
+          title="win2k-cold-1"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-win2k-cold-2.css"
+          title="win2k-cold-2"/>
+    <link rel="alternate stylesheet" type="text/css" media="all" href="../skins/calendar-system.css" title="system"/>
+
+
+    <!-- import the Jalali Date Class script -->
+    <script type="text/javascript" src="../jalali.js"></script>
+
+    <!-- import the calendar script -->
+    <script type="text/javascript" src="../calendar.js"></script>
+
+    <!-- import the calendar script -->
+    <script type="text/javascript" src="../calendar-setup.js"></script>
+
+    <!-- import the language module -->
+    <script type="text/javascript" src="../lang/calendar-fa.js"></script>
+
+    <!-- helper script that uses the calendar -->
+    <script type="text/javascript">
+
+        var oldLink = null;
+
+        // code to change the active stylesheet
+        function setActiveStyleSheet(link, title) {
+            var i, a, main;
+            for (i = 0; (a = document.getElementsByTagName("link")[i]); i++) {
+                if (a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title")) {
+                    a.disabled = true;
+                    if (a.getAttribute("title") == title) a.disabled = false;
+                }
+            }
+            if (oldLink) oldLink.style.fontWeight = 'normal';
+            oldLink = link;
+            link.style.fontWeight = 'bold';
+            return false;
+        }
+
+    </script>
+
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body id="topPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top text-right" id="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#text-section">بخش های متنی</a></li>
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#gallery">گالری</a></li>
+                <li><a href="#myCarousel">مناطق دیدنی ایران</a></li>
+                <li><a href="#panel-pricing">محصولات</a></li>
+                <li><a href="#contact-us">تماس با ما</a></li>
+            </ul>
+
+            <!-- Button of the modal-login -->
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-two">ورود</button>
+
+
+            <!-- Button of the modal signup -->
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-one"
+                    id="dokmeh-sabtenam">
+                ثبت نام
+            </button>
+            <!-- /Button of the modal-signup -->
+        </div>
+    </div>
+</nav>
+<!-- /navbar -->
+
+<!-- Modal Signup -->
+<div class="modal" id="myModal-one">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <span class="glyphicon glyphicon-lock glyphicon-for-signup-modal"></span>
+                <span id="signupspan">ثبت نام</span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- /Modal Header -->
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form>
+                    <div class="form-group form-group-stylesheet text-muted">
+                        <label>نام کاربری</label>
+                        <span class="glyphicon glyphicon-user"></span>
+                        <input type="text" class="form-control" id="txt" placeholder="نام کاربری خود را وارد کنید"
+                        />
+                    </div>
+                    <div class="form-group form-group-stylesheet text-muted">
+                        <label>رمز عبور</label>
+                        <span class="glyphicon glyphicon-eye-close"></span>
+                        <input type="password" class="form-control" id="pwd" placeholder="رمز عبور خود را وارد کنید"
+                               name="password"/>
+                    </div>
+                    <div class="form-group form-group-stylesheet text-muted">
+                        <label>ایمیل</label>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <input type="email" class="form-control" id="mail" placeholder="ایمیل خود را وارد کنید"
+                               name="email"/>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">ثبت نام<span
+                                class="glyphicon glyphicon-off"></span></button>
+                    </div>
+                </form>
+            </div>
+            <!-- /Modal Body -->
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <span>قبلا <a href="#">ثبت نام</a> کرده اید؟</span>
+                <button type="button"
+                        class="btn btn-danger cancel-button">انصراف<span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <!-- /Modal Footer -->
+        </div>
+    </div>
+</div>
+<!-- /Modal Signup -->
+
+<!-- Modal login -->
+<div class="modal" id="myModal-two">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header">
+                <span class="glyphicon glyphicon-lock glyphicon-for-login-modal"></span>
+                <span id="loginspan">ورود</span>
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- /Modal header -->
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form>
+                    <div class="form-group form-group-stylesheet text-muted">
+                        <label>نام کاربری</label>
+                        <span class="glyphicon glyphicon-user"></span>
+                        <input type="text" class="form-control" placeholder="نام کاربری خود را وارد کنید"
+                               name="text"/>
+                    </div>
+                    <div class="form-group form-group-stylesheet text-muted">
+                        <label>رمز عبور</label>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <input type="password" class="form-control" placeholder="رمز عبور خود را وارد کنید"
+                               name="password"/>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">ورود<span
+                                class="glyphicon glyphicon-off"></span></button>
+                    </div>
+                </form>
+            </div>
+            <!-- /Modal body -->
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <span class="text-muted">رمز عبور خود را فراموش کرده اید؟</span>
+                <button type="button"
+                        class="btn btn-danger cancel-button">انصراف<span
+                        class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <!-- /Modal footer -->
+        </div>
+    </div>
+</div>
+<!-- /Modal login -->
+
+<!-- header -->
+<div id="jumbotron-parent">
+    <div class="jumbotron"
+         style="background-image: url(images/header-bg.png); height: 30em; background-repeat: no-repeat; background-size: cover; filter: grayscale(55%);">
+        <div class="container">
+            <br/>
+            <br/>
+            <div class="form-group center-block text-center" style="width: 30%">
+                <label class="text-danger">ایمیل:</label>
+                <input type="email" class="form-control" placeholder="ایمیل خود را وارد کنید ..." id="email"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /header -->
+
+<!-- text sections -->
+<div id="text-section" class="container text-right text-muted">
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                متون
+                بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
+                متنوع
+                با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان
+                جامعه
+                و متخصصان را می طلبد.
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                متون
+                بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
+                متنوع
+                با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان
+                جامعه
+                و متخصصان را می طلبد.
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+            </div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+            </div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+            </div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /text sections -->
+
+<!-- services -->
+<div id="services" class="container text-center">
+    <h2 class="text-danger">خدمات:</h2>
+    <div class="row slideanim">
+        <div class="col-xs-0 col-sm-6 col-md-3">
+            <span class="glyphicon glyphicon-off text-danger logo-small"></span>
+            <h4>قدرت بالا</h4>
+            <p>لورم ایپسوم متن ساختگی با تولید...</p>
+        </div>
+        <div class="col-xs-0 col-sm-6 col-md-3">
+            <span class="glyphicon glyphicon-heart text-danger logo-small"></span>
+            <h4>خلاقیت</h4>
+            <p>لورم ایپسوم متن ساختگی با تولید...</p>
+        </div>
+        <div class="col-xs-0 col-sm-6 col-md-3">
+            <span class="glyphicon glyphicon-lock text-danger logo-small"></span>
+            <h4>قدرت</h4>
+            <p>لورم ایپسوم متن ساختگی با تولید...</p>
+        </div>
+        <div class="col-xs-0 col-sm-6 col-md-3">
+            <span class="glyphicon glyphicon-plus text-danger logo-small"></span>
+            <h4>مثبت</h4>
+            <p>لورم ایپسوم متن ساختگی با تولید...</p>
+        </div>
+    </div>
+</div>
+<!-- /services -->
+
+<!-- parallax -->
+<div id="parallax-two"></div>
+<!-- /parallax -->
+
+<div id="gallery" class="container text-center">
+    <!-- Gallery -->
+    <h2 class="text-danger">گالری:</h2>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="images/gallery1.jpg" alt="first image" width="400" height="300" id="afarin"/>
+            </div>
+            <div id="org-image-one">
+                <span class="close-modal-image" onclick="document.getElementById('org-image-one').style.display='none'">&times;</span>
+                <img src="images/gallery1.jpg" alt="org image"/>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="images/gallery2.jpg" alt="second image" width="400" height="300" id="afarin-two"/>
+            </div>
+            <div id="org-image-two">
+                <span class="close-modal-image" onclick="document.getElementById('org-image-two').style.display='none'">&times;</span>
+                <img src="images/gallery1.jpg" alt="org image"/>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="images/gallery3.jpg" alt="third image" width="400" height="300" id="afarin-three"/>
+            </div>
+            <div id="org-image-three">
+                <span class="close-modal-image"
+                      onclick="document.getElementById('org-image-three').style.display='none'">&times;</span>
+                <img src="images/gallery1.jpg" alt="org image"/>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <!-- /Gallery -->
+
+    <!-- images slider -->
+    <div class="container">
+        <h2 class="text-danger">مناطق دیدنی ایران:</h2>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+
+                <div class="item active">
+                    <img src="images/abshar.jpg" alt="abshar" style="width:100%;">
+                    <div class="carousel-caption">
+                        <h3>آبشار</h3>
+                        <p>آبشار فارس از زیباترین آبشار های جهان است.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="images/temple.jpg" alt="temple" style="width:100%;">
+                    <div class="carousel-caption">
+                        <h3>آرامگاه</h3>
+                        <p>آرامگاه سعدی از بزرگترین شاعران ایرانی به شمار می رود.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="images/holyshrine.jpg" alt="holy shrine" style="width:100%;">
+                    <div class="carousel-caption">
+                        <h3>حرم امام رضا</h3>
+                        <p>حرم امام رضا مکانی زیارتی برای مسلمانان است.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <!-- /images slider -->
+</div>
+
+<!-- pricing -->
+<div id="panel-pricing" class="container">
+    <h2 class="text-center text-danger">پنل قیمت ها:</h2>
+    <div class="row slideanim slide">
+        <div class="col-sm-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1 class="text-danger">اولیه</h1>
+                </div>
+                <div class="panel-body text-primary">
+                    <p>ثبت دامنه</p>
+                    <p>اختصاص هاست</p>
+                    <p>پیاده سازی سایت</p>
+                    <p>یکسال پیشتیبانی</p>
+                </div>
+                <div class="panel-footer">
+                    <h3>500 هزار <br/>تومان</h3>
+                    <button class="btn btn-lg btn-success">ثبت نام</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1 class="text-danger">استاندارد</h1>
+                </div>
+                <div class="panel-body text-primary">
+                    <p>اختصاص هاستینگ</p>
+                    <p>درج اطلاعات وب سایت</p>
+                    <p>آموزش کنترل پنل</p>
+                    <p>واکنش گرا بودن سایت</p>
+                </div>
+                <div class="panel-footer">
+                    <h3>1 میلیون <br/>تومان</h3>
+                    <button class="btn btn-lg btn-success">ثبت نام</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1 class="text-danger">پیشرفته</h1>
+                </div>
+                <div class="panel-body text-primary">
+                    <p>بهینه سازی سایت</p>
+                    <p>طراحی ui</p>
+                    <p>طراحی ux</p>
+                    <p>طراحی قالب</p>
+                </div>
+                <div class="panel-footer">
+                    <h3>2 میلیون <br/>تومان</h3>
+                    <button class="btn btn-lg btn-success">ثبت نام</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /pricing -->
+
+<!-- parallax -->
+<div id="parallax-three"></div>
+<!-- /parallax -->
+
+<!-- calculator and data picker -->
+<div class="container" style="margin-top: 10%; margin-bottom: 5%">
+    <div class="row">
+        <div class="col-lg-6 col-xs-12">
+            <!--BEGIN OF SCIENTIFIC CALCULATOR CODE-->
+            <script>
+        /*****************************************
+         (C) http://www.calculator.net all right reserved.
+         *****************************************/
+        function gObj(obj) {var theObj;if(document.all){if(typeof obj=="string"){return document.all(obj);}else{return obj.style;}}if(document.getElementById){if(typeof obj=="string"){return document.getElementById(obj);}else{return obj.style;}}return null;}function trimAll(sString){while (sString.substring(0,1) == ' '){sString = sString.substring(1, sString.length);}while (sString.substring(sString.length-1, sString.length) == ' '){sString = sString.substring(0,sString.length-1);} return sString;} function showDebugInfo(){}function r(A){if(A=="10x"||A=="log"||A=="ex"||A=="ln"||A=="sin"||A=="asin"||A=="cos"||A=="acos"||A=="tan"||A=="atan"||A=="e"||A=="pi"||A=="n!"||A=="x2"||A=="1/x"||A=="swap"||A=="x3"||A=="3x"||A=="RND"||A=="M-"||A=="qc"||A=="MC"||A=="MR"||A=="MS"||A=="M+"||A=="sqrt"||A=="pc"){func(A)}else{if(A==1||A==2||A==3||A==4||A==5||A==6||A==7||A==8||A==9||A==0){numInput(A)}else{if(A=="pow"||A=="apow"||A=="+"||A=="-"||A=="*"||A=="/"){opt(A)}else{if(A=="("){popen()}else{if(A==")"){pclose()}else{if(A=="EXP"){exp()}else{if(A=="."){if(entered){value=0;digits=1}entered=false;if((decimal==0)&&(value==0)&&(digits==0)){digits=1}if(decimal==0){decimal=1}refresh()}else{if(A=="+/-"){if(exponent){Hj=-Hj}else{value=-value}refresh()}else{if(A=="C"){level=0;exponent=false;value=0;enter();refresh()}else{if(A=="="){enter();while(level>0){evalx()}refresh()}}}}}}}}}}}var totalDigits=12;var pareSize=12;var degreeRadians="degree";var value=0;var memory=0;var level=0;var entered=true;var decimal=0;var fixed=0;var exponent=false;var digits=0;var showValue="0";var isShowValue=true;function stackItem(){this.value=0;this.op=""}function array(A){this[0]=0;for(i=0;i<A;++i){this[i]=0;this[i]=new stackItem()}this.gG=A}uI=new array(pareSize);function push(B,C,A){if(level==pareSize){return false}for(i=level;i>0;--i){uI[i].value=uI[i-1].value;uI[i].op=uI[i-1].op;uI[i].vg=uI[i-1].vg}uI[0].value=B;uI[0].op=C;uI[0].vg=A;++level;return true}function pop(){if(level==0){return false}for(i=0;i<level;++i){uI[i].value=uI[i+1].value;uI[i].op=uI[i+1].op;uI[i].vg=uI[i+1].vg}--level;return true}function format(I){if(typeof (cc)!="undefined"){return };var E=""+I;if(E.indexOf("N")>=0||(I==2*I&&I==1+I)){return"Error "}var G=E.indexOf("e");if(G>=0){var A=E.substring(G+1,E.length);if(G>11){G=11}E=E.substring(0,G);if(E.indexOf(".")<0){E+="."}else{j=E.length-1;while(j>=0&&E.charAt(j)=="0"){--j}E=E.substring(0,j+1)}E+=" "+A}else{var J=false;if(I<0){I=-I;J=true}var C=Math.floor(I);var K=I-C;var D=totalDigits-(""+C).length-1;if(!entered&&fixed>0){D=fixed}var F=" 1000000000000000000".substring(1,D+2)+"";if((F=="")||(F==" ")){F=1}else{F=parseInt(F)}var B=Math.floor(K*F+0.5);C=Math.floor(Math.floor(I*F+0.5)/F);if(J){E="-"+C}else{E=""+C}var H="00000000000000"+B;H=H.substring(H.length-D,H.length);G=H.length-1;if(entered||fixed==0){while(G>=0&&H.charAt(G)=="0"){--G}H=H.substring(0,G+1)}if(G>=0){E+="."+H}}return E}function refresh(){var A=format(value);if(exponent){if(Hj<0){A+=" "+Hj}else{A+=" +"+Hj}}if(A.indexOf(".")<0&&A!="Error "){if(entered||decimal>0){A+="."}else{A+=" "}}if(""==(""+A)){document.getElementById("sciOutPut").innerHTML=" "}else{document.getElementById("sciOutPut").innerHTML=A}}function evalx(){if(level==0){return false}op=uI[0].op;Qk=uI[0].value;if(op=="+"){value=parseFloat(Qk)+value}else{if(op=="-"){value=Qk-value}else{if(op=="*"){value=Qk*value}else{if(op=="/"){value=Qk/value}else{if(op=="pow"){value=Math.pow(Qk,value)}else{if(op=="apow"){value=Math.pow(Qk,1/value)}}}}}}pop();if(op=="("){return false}return true}function popen(){enter();if(!push(0,"(",0)){value="NAN"}refresh()}function pclose(){enter();while(evalx()){}refresh()}function opt(A){enter();if(A=="+"||A=="-"){vg=1}else{if(A=="*"||A=="/"){vg=2}else{if(A=="pow"||A=="apow"){vg=3}}}if(level>0&&vg<=uI[0].vg){evalx()}if(!push(value,A,vg)){value="NAN"}refresh()}function enter(){if(exponent){value=value*Math.exp(Hj*Math.LN10)}entered=true;exponent=false;decimal=0;fixed=0}function numInput(A){if(entered){value=0;digits=0;entered=false}if(A==0&&digits==0){refresh();return }if(exponent){if(Hj<0){A=-A}if(digits<3){Hj=Hj*10+A;++digits;refresh()}return }if(value<0){A=-A}if(digits<totalDigits-1){++digits;if(decimal>0){decimal=decimal*10;value=value+(A/decimal);++fixed}else{value=value*10+A}}refresh()}function exp(){if(entered||exponent){return }exponent=true;Hj=0;digits=0;decimal=0;refresh()}function func(D){enter();if(D=="1/x"){value=1/value}if(D=="pc"){value=value/100}if(D=="qc"){value=value/1000}else{if(D=="swap"){var B=value;value=uI[0].value;uI[0].value=B}else{if(D=="n!"){if(value<0||value>200||value!=Math.round(value)){value="NAN"}else{var E=1;var A;for(A=1;A<=value;++A){E*=A}value=E}}else{if(D=="MR"){value=memory}else{if(D=="M+"){memory+=value}else{if(D=="MS"){memory=value}else{if(D=="MC"){memory=0}else{if(D=="M-"){memory-=value}else{if(D=="asin"){if(degreeRadians=="degree"){value=Math.asin(value)*180/Math.PI}else{value=Math.asin(value)}}else{if(D=="acos"){if(degreeRadians=="degree"){value=Math.acos(value)*180/Math.PI}else{value=Math.acos(value)}}else{if(D=="atan"){if(degreeRadians=="degree"){value=Math.atan(value)*180/Math.PI}else{value=Math.atan(value)}}else{if(D=="e^x"){value=Math.exp(value*Math.LN10)}else{if(D=="2^x"){value=Math.exp(value*Math.LN2)}else{if(D=="e^x"){value=Math.exp(value)}else{if(D=="x^2"){value=value*value}else{if(D=="e"){value=Math.E}else{if(D=="ex"){value=Math.pow(Math.E,value)}else{if(D=="10x"){value=Math.pow(10,value)}else{if(D=="x3"){value=value*value*value}else{if(D=="3x"){value=Math.pow(value,1/3)}else{if(D=="x2"){value=value*value}else{if(D=="sin"){if(degreeRadians=="degree"){value=Math.sin(value/180*Math.PI)}else{value=Math.sin(value)}}else{if(D=="cos"){if(degreeRadians=="degree"){var C=(value%360);if(C<0){C=C+360}if(C==90){value=0}else{if(C==270){value=0}else{value=Math.cos(value/180*Math.PI)}}}else{var C=(value*180/Math.PI)%360;if(C<0){C=C+360}if((Math.abs(C-90)<1e-10)||(Math.abs(C-270)<1e-10)){value=0}else{value=Math.cos(value)}}}else{if(D=="tan"){if(degreeRadians=="degree"){value=Math.tan(value/180*Math.PI)}else{value=Math.tan(value)}}else{if(D=="log"){value=Math.log(value)/Math.LN10}else{if(D=="log2"){value=Math.log(value)/Math.LN2}else{if(D=="ln"){value=Math.log(value)}else{if(D=="sqrt"){value=Math.sqrt(value)}else{if(D=="pi"){value=Math.PI}else{if(D=="RND"){value=Math.random()}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}refresh()};
+    </script>
+            <style>
+        #sciout{padding:5px;border-top:1px solid #262626;border-left:1px solid #262626;border-right:2px outset #262626;border-bottom:2px outset #262626;background: #eeeeee;font-family:arial,helvetica,sans-serif;}#sciOutPut{font-size:18px;padding:3px;margin:2px;cursor:text;text-align:right;background-color:#B8C6A3;border:1px solid #87996b;border-radius: 3px;color:#000;}.scifunc{display: inline-block;display: table-cell;vertical-align: middle;text-align:center;width:50px;height:25px;margin:1px;border:1px solid #262626;border-radius: 3px;font-family:arial,helvetica,sans-serif;font-size:16px;font-weight:bold;color:#185290;background-color:#C8D8E8;}.scifunc:active {background-color:#013f7d;color:#ffffff;}.scinm{display: inline-block;display: table-cell;vertical-align: middle;padding: 5px 0px;text-align:center;width:50px;height:30px;margin:1px;border:1px solid #262626;border-radius: 3px;font-family:arial,helvetica,sans-serif;font-size:16px;font-weight:bold;color:#FFF;background-color:#262626;}.scinm:active {background-color:#aaaaaa;color:#000000;}.sciop{display: inline-block;display: table-cell;vertical-align: middle;padding: 5px 0px;text-align:center;width:50px;height:30px;margin:1px;border:1px solid #262626;border-radius: 3px;font-family:arial,helvetica,sans-serif;font-size:16px;font-weight:bold;color:#262626;background-color:#ccc;}.sciop:active {background-color:#000000;color:#ffffff;}.scird{display: inline-block;display: table-cell;vertical-align: middle;text-align:center;height:30px;margin:1px;border:1px solid #eeeeee;border-radius: 3px;font-family:arial,helvetica,sans-serif;font-size:13px;color:#262626;}.scieq{display: inline-block;display: table-cell;vertical-align: middle;padding: 5px 0px;text-align:center;width:50px;height:30px;margin:1px;border:1px solid #262626;border-radius: 3px;font-family:arial,helvetica,sans-serif;font-size:16px;font-weight:bold;color:#F00;background-color:#DCADB0;}.scieq:active {background-color:#ff0000;color:#ffffff;}#calfootnote {font-family:arial,helvetica,sans-serif;font-size:12px;text-align:right;}
+    </style>
+            <table><tr><td id="sciout"><div><div id="sciOutPut">0</div></div><div style="padding-top:3px;width:100%"><div><span onclick="r('sin')" class="scifunc">sin</span><span onclick="r('cos')" class="scifunc">cos</span><span onclick="r('tan')" class="scifunc">tan</span><span class="scird"><label for="scirdsettingd"><input id="scirdsettingd" type="radio" name="scirdsetting" value="deg" onClick="degreeRadians='degree';" checked>Deg</label><label for="scirdsettingr"><input id="scirdsettingr" type="radio" name="scirdsetting" value="rad" onClick="degreeRadians='radians';">Rad</label></span></div><div><span onclick="r('asin')" class="scifunc">sin<sup>-1</sup></span><span onclick="r('acos')" class="scifunc">cos<sup>-1</sup></span><span onclick="r('atan')" class="scifunc">tan<sup>-1</sup></span><span onclick="r('pi')" class="scifunc">&#960;</span><span onclick="r('e')" class="scifunc">e</span></div><div><span onclick="r('pow')" class="scifunc">x<sup>y</sup></span><span onclick="r('x3')" class="scifunc">x<sup>3</sup></span><span onclick="r('x2')" class="scifunc">x<sup>2</sup></span><span onclick="r('ex')" class="scifunc">e<sup>x</sup></span><span onclick="r('10x')" class="scifunc">10<sup>x</sup></span></div><div><span onclick="r('apow')" class="scifunc"><sup>y</sup>&#8730;x</span><span onclick="r('3x')" class="scifunc"><sup>3</sup>&#8730;x</span><span onclick="r('sqrt')" class="scifunc">&#8730;x</span><span onclick="r('ln')" class="scifunc">ln</span><span onclick="r('log')" class="scifunc">log</span></div><div><span onclick="r('(')" class="scifunc">(</span><span onclick="r(')')" class="scifunc">)</span><span onclick="r('1/x')" class="scifunc">1/x</span><span onclick="r('pc')" class="scifunc">%</span><span onclick="r('n!')" class="scifunc">n!</span></div></div><div style="padding-top:3px;"><div><span onclick="r(7)" class="scinm">7</span><span onclick="r(8)" class="scinm">8</span><span onclick="r(9)" class="scinm">9</span><span onclick="r('+')" class="sciop">+</span><span onclick="r('MS')" class="sciop">MS</span></div><div><span onclick="r(4)" class="scinm">4</span><span onclick="r(5)" class="scinm">5</span><span onclick="r(6)" class="scinm">6</span><span onclick="r('-')" class="sciop">&ndash;</span><span onclick="r('M+')" class="sciop">M+</span></div><div><span onclick="r(1)" class="scinm">1</span><span onclick="r(2)" class="scinm">2</span><span onclick="r(3)" class="scinm">3</span><span onclick="r('*')" class="sciop">&#215;</span><span onclick="r('M-')" class="sciop">M-</span></div><div><span onclick="r(0)" class="scinm">0</span><span onclick="r('.')" class="scinm">.</span><span onclick="r('EXP')" class="sciop">EXP</span><span onclick="r('/')" class="sciop">&#247;</span><span onclick="r('MR')" class="sciop">MR</span></div><div><span onclick="r('+/-')" class="sciop">&#177;</span><span onclick="r('RND')" class="sciop">RND</span><span onclick="r('C')" class="scieq">C</span><span onclick="r('=')" class="scieq">=</span><span onclick="r('MC')" class="sciop">MC</span></div></div></td></tr><tr><td id="calfootnote">powered by <a href="http://www.calculator.net" rel="nofollow">calculator.net</a></td></tr></table>
+            <!--END OF SCIENTIFIC CALCULATOR CODE-->
+        </div>
+    </div>
+    <!-- Date picker -->
+    <div class="example" style="margin-top: -30%;">
+        <span class="text-muted">
+                    لطفا تاریخ شروع و پایان<br/>را انتخاب کنید.
+        </span>
+        <input id="date_input_1" type="text" style="margin-right: 5%"/><span id="date_btn_1" class="glyphicon glyphicon-menu-up" style="cursor: pointer; margin-right: 1%;"></span>
+        <input id="date_input_2" type="text"/><span class="glyphicon glyphicon-menu-up" style="cursor: pointer; margin-right: 1%;"></span>
+        <script type="text/javascript">
+            Calendar.setup({
+                inputField: "date_input_1",   // id of the input field
+                button: "date_btn_1",   // trigger for the calendar (button ID)
+                ifFormat: "%Y-%m-%d",       // format of the input field
+                dateType: 'jalali',
+                weekNumbers: false
+            });
+        </script>
+    </div>
+    <!-- /Date picker -->
+</div>
+<!-- /calculator and data picker -->
+
+
+
+<!-- video from aparat -->
+<div class="container">
+    <style>.h_iframe-aparat_embed_frame{position:relative;}.h_iframe-aparat_embed_frame .ratio{display:block;width:100%;height:auto;}.h_iframe-aparat_embed_frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;}</style><div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/aTdYj/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div>
+</div>
+<!-- /video from aparat -->
+
+<!-- contact us -->
+<div id="contact-us" class="container-fluid bg-grey">
+    <h2 class="text-center text-danger">تماس با ما</h2>
+    <div class="row">
+        <div class="col-sm-5">
+            <p>از طریق فرم زیر با ما در تماس باشید.</p>
+            <p><span class="glyphicon glyphicon-map-marker"></span> تهران, ایران</p>
+            <p><span class="glyphicon glyphicon-phone"></span> +98 9022727121</p>
+            <p><span class="glyphicon glyphicon-envelope"></span> alireza313333@gmail.com</p>
+        </div>
+        <div class="col-sm-7 slideanim slide">
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <input class="form-control" id="name" name="name" placeholder="نام" type="text" required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <input class="form-control" id="email-two" name="email" placeholder="ایمیل" type="email" required>
+                </div>
+            </div>
+            <textarea class="form-control" id="comments" name="comments" placeholder="نظرات" rows="5"></textarea><br>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <button class="btn btn-default pull-right" type="submit">ارسال</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /contact us -->
+
+<!-- Map -->
+<iframe width="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21799.448921882737!2d51.367210659159404!3d35.689127760853594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00fab14e8785%3A0x8d08a2f1a8a81ee0!2sShahid+Navvab-e+Safavi!5e0!3m2!1sen!2s!4v1556875530296!5m2!1sen!2s" width="600" height="450" frameborder="0" style="border:0" allowfullscreen>
+</iframe>
+<!-- /Map -->
+
+<!-- footer -->
+<footer class="container text-center">
+    <a href="#topPage" id="flesh-top-page">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <p class="text-danger">سایت <a href="http://maktabkhooneh.org" class="text-danger">مکتب خونه</a></p>
+</footer>
+<!-- /footer -->
+
+
+</body>
+</html>
